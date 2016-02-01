@@ -2,7 +2,7 @@ package net.javierjimenez.Calculadora;
 
 import java.awt.EventQueue;
 
-import javax.swing.ImageIcon;
+//import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
@@ -12,7 +12,7 @@ import java.awt.Color;
 
 public class App {
 
-	private static String IMATGE = "/senbei.png";
+	//private static String IMATGE = "/senbei.png";
 	
 	private JFrame frame;
 
@@ -44,55 +44,124 @@ public class App {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 300, 400);
+		frame.setBounds(100, 100, 500, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		frame.getContentPane().setLayout(gridBagLayout);
 		
-		JLabel lblCalculadora = new JLabel(" ");
+		JLabel lblCalculadora = new JLabel("0");
 		lblCalculadora.setBackground(Color.BLACK);
+		lblCalculadora.setForeground(Color.WHITE);
 		lblCalculadora.setOpaque(true);
 		GridBagConstraints g = new GridBagConstraints();
 		g.fill = GridBagConstraints.BOTH;
-		g.weightx = 1;
-		g.weighty = 1;
+		
+		g.weightx = 0.5;
+		g.weighty = 0.5;
+		
 		g.gridwidth = 3;
+		g.gridheight = 1;
+		
 		g.gridx = 0;
 		g.gridy = 0;
 		frame.getContentPane().add(lblCalculadora, g);
 		
-		ImageIcon icon = createImageIcon(IMATGE);
+		//ImageIcon icon = createImageIcon(IMATGE);
 		
-		JButton button = new JButton(icon);
+		JButton button7 = new JButton("7");
 		g.fill = GridBagConstraints.BOTH;
-		g.gridwidth = 1;
-		g.gridx = 4;
-		g.gridy = 1;
-		frame.getContentPane().add(button, g);
 		
-		JButton button2 = new JButton("Button 2");
-		g.fill = GridBagConstraints.BOTH;
+		g.weightx = 0.5;
+		g.weighty = 0.5;
+		
 		g.gridwidth = 1;
+		g.gridheight = 1;
+		
 		g.gridx = 0;
 		g.gridy = 1;
-		frame.getContentPane().add(button2, g);
+		frame.getContentPane().add(button7, g);
 		
-		JButton button3 = new JButton("Button 3");
+		JButton button8 = new JButton("8");
 		g.fill = GridBagConstraints.BOTH;
+		
+		g.weightx = 0.5;
+		g.weighty = 0.5;
+		
 		g.gridwidth = 1;
+		g.gridheight = 1;
+		
 		g.gridx = 1;
 		g.gridy = 1;
-		frame.getContentPane().add(button3, g);
+		frame.getContentPane().add(button8, g);
 		
-		JButton button4 = new JButton("Button 4");
+		JButton button9 = new JButton("9");
 		g.fill = GridBagConstraints.BOTH;
+		
+		g.weightx = 0.5;
+		g.weighty = 0.5;
+		
 		g.gridwidth = 1;
+		g.gridheight = 1;
+		
 		g.gridx = 2;
 		g.gridy = 1;
-		frame.getContentPane().add(button4, g);
+		frame.getContentPane().add(button9, g);
+		
+		JButton buttonMinus = new JButton("-");
+		g.fill = GridBagConstraints.BOTH;
+		
+		g.weightx = 0.5;
+		g.weighty = 0.5;
+		
+		g.gridwidth = 1;
+		g.gridheight = 1;
+		
+		g.gridx = 4;
+		g.gridy = 1;
+		frame.getContentPane().add(buttonMinus, g);
+		
+		JButton buttonPlus = new JButton("+");
+		g.fill = GridBagConstraints.BOTH;
+		
+		g.weightx = 0.5;
+		g.weighty = 0.5;
+		
+		g.gridwidth = 1;
+		g.gridheight = 2;
+		
+		g.gridx = 4;
+		g.gridy = 2;
+		frame.getContentPane().add(buttonPlus, g);
+		
+		JButton buttonPls = new JButton("N");
+		g.fill = GridBagConstraints.BOTH;
+		
+		g.weightx = 0.5;
+		g.weighty = 0.5;
+		
+		g.gridwidth = 1;
+		g.gridheight = 1;
+		
+		g.gridx = 2;
+		g.gridy = 2;
+		frame.getContentPane().add(buttonPls, g);
+		
+		JButton buttonPlt = new JButton("N");
+		g.fill = GridBagConstraints.BOTH;
+		
+		g.weightx = 0.5;
+		g.weighty = 0.5;
+		
+		g.gridwidth = 1;
+		g.gridheight = 1;
+		
+		g.gridx = 2;
+		g.gridy = 3;
+		frame.getContentPane().add(buttonPlt, g);
+		
 	}
 
-	private ImageIcon createImageIcon(String path) {
+	/*private ImageIcon createImageIcon(String path) {
 		java.net.URL imgURL = getClass().getResource(path);
 	    if (imgURL != null) {
 	        return new ImageIcon(imgURL);
@@ -100,5 +169,5 @@ public class App {
 	        System.err.println("Couldn't find file: " + path);
 	        return null;
 	    }
-	}
+	}*/
 }
