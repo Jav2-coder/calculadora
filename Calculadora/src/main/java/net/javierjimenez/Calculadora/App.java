@@ -16,11 +16,15 @@ public class App {
 
 	private JFrame frame;
 
-	private int valor1, valor2 = 0;
+	private double valor, num = 0;
 
-	private String total = null;
+	private boolean igual = false;
 
-	private boolean operacio, decimal, numero = false;
+	private String total = "0";
+
+	private String operacio = "";
+
+	private JLabel lblCalculadora = new JLabel("0");
 
 	/**
 	 * Launch the application.
@@ -56,7 +60,6 @@ public class App {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		frame.getContentPane().setLayout(gridBagLayout);
 
-		JLabel lblCalculadora = new JLabel("0");
 		lblCalculadora.setBackground(Color.BLACK);
 		lblCalculadora.setForeground(Color.WHITE);
 		lblCalculadora.setOpaque(true);
@@ -86,6 +89,8 @@ public class App {
 		g.gridy = 1;
 		frame.getContentPane().add(button7, g);
 
+		actionButtonNum(button7);
+
 		JButton button8 = new JButton("8");
 		g.fill = GridBagConstraints.BOTH;
 
@@ -98,6 +103,8 @@ public class App {
 		g.gridx = 1;
 		g.gridy = 1;
 		frame.getContentPane().add(button8, g);
+
+		actionButtonNum(button8);
 
 		JButton button9 = new JButton("9");
 		g.fill = GridBagConstraints.BOTH;
@@ -112,6 +119,8 @@ public class App {
 		g.gridy = 1;
 		frame.getContentPane().add(button9, g);
 
+		actionButtonNum(button9);
+
 		JButton button4 = new JButton("4");
 		g.fill = GridBagConstraints.BOTH;
 
@@ -124,6 +133,8 @@ public class App {
 		g.gridx = 0;
 		g.gridy = 2;
 		frame.getContentPane().add(button4, g);
+
+		actionButtonNum(button4);
 
 		JButton button5 = new JButton("5");
 		g.fill = GridBagConstraints.BOTH;
@@ -138,6 +149,8 @@ public class App {
 		g.gridy = 2;
 		frame.getContentPane().add(button5, g);
 
+		actionButtonNum(button5);
+
 		JButton button6 = new JButton("6");
 		g.fill = GridBagConstraints.BOTH;
 
@@ -150,6 +163,8 @@ public class App {
 		g.gridx = 2;
 		g.gridy = 2;
 		frame.getContentPane().add(button6, g);
+
+		actionButtonNum(button6);
 
 		JButton button1 = new JButton("1");
 		g.fill = GridBagConstraints.BOTH;
@@ -164,6 +179,8 @@ public class App {
 		g.gridy = 3;
 		frame.getContentPane().add(button1, g);
 
+		actionButtonNum(button1);
+
 		JButton button2 = new JButton("2");
 		g.fill = GridBagConstraints.BOTH;
 
@@ -176,6 +193,8 @@ public class App {
 		g.gridx = 1;
 		g.gridy = 3;
 		frame.getContentPane().add(button2, g);
+
+		actionButtonNum(button2);
 
 		JButton button3 = new JButton("3");
 		g.fill = GridBagConstraints.BOTH;
@@ -190,6 +209,8 @@ public class App {
 		g.gridy = 3;
 		frame.getContentPane().add(button3, g);
 
+		actionButtonNum(button3);
+
 		JButton button0 = new JButton("0");
 		g.fill = GridBagConstraints.BOTH;
 
@@ -203,12 +224,7 @@ public class App {
 		g.gridy = 4;
 		frame.getContentPane().add(button0, g);
 
-		button0.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				lblCalculadora.setText(clickNumero(button0.getText()));
-			}
-		});
+		actionButtonNum(button0);
 
 		JButton buttonPnt = new JButton(".");
 		g.fill = GridBagConstraints.BOTH;
@@ -226,19 +242,9 @@ public class App {
 		buttonPnt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!operacio) {
-					if (!decimal) {
-						decimal = true;
-						operacio = true;
-						total = String.valueOf(valor1) + ".";
-						lblCalculadora.setText(total);
-					}
-				} else {
-					if (!decimal) {
-						decimal = true;
-						total = String.valueOf(valor1) + ".";
-						lblCalculadora.setText(total);
-					}
+				if (!lblCalculadora.getText().contains(".")) {
+					total = lblCalculadora.getText() + e.getActionCommand();
+					lblCalculadora.setText(total);
 				}
 			}
 		});
@@ -256,6 +262,8 @@ public class App {
 		g.gridy = 1;
 		frame.getContentPane().add(buttonMns, g);
 
+		operacioMat(buttonMns);
+
 		JButton buttonEq = new JButton("=");
 		g.fill = GridBagConstraints.BOTH;
 
@@ -268,6 +276,33 @@ public class App {
 		g.gridx = 3;
 		g.gridy = 4;
 		frame.getContentPane().add(buttonEq, g);
+
+		buttonEq.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switch (operacio) {
+				case "+":
+					total = String.valueOf(valor + num);
+					operacio = "";
+					num = 0;
+					lblCalculadora.setText(total);
+					igual = true;
+					break;
+				case "-":
+					total = String.valueOf(valor - num);
+					operacio = "";
+					num = 0;
+					lblCalculadora.setText(total);
+					igual = true;
+					break;
+				case "":
+					total = String.valueOf(num);
+					lblCalculadora.setText(total);
+					igual = true;
+					break;
+				}
+			}
+		});
 
 		JButton buttonPls = new JButton("+");
 		g.fill = GridBagConstraints.BOTH;
@@ -282,25 +317,62 @@ public class App {
 		g.gridy = 2;
 		frame.getContentPane().add(buttonPls, g);
 
+		operacioMat(buttonPls);
 	}
 
-	private String clickNumero(String num) {
+	private void actionButtonNum(JButton button) {
 
-		if (operacio) {
-			total = total + num;
-			int value = Integer.parseInt(total);
-			if(numero) {
-				valor2 = value;
-			} else {
-				valor1 = value;
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!igual) {
+					String number = String.valueOf((int) num);
+					number = number + e.getActionCommand();
+					num = Double.parseDouble(number);
+					total = lblCalculadora.getText() + e.getActionCommand();
+					lblCalculadora.setText(total);
+				} else {
+					lblCalculadora.setText("");
+					String number = String.valueOf((int) num);
+					number = number + e.getActionCommand();
+					num = Double.parseDouble(number);
+					total = lblCalculadora.getText() + e.getActionCommand();
+					lblCalculadora.setText(total);
+					igual = false;
+				}
 			}
-			return total;
+		});
+	}
 
-		} else {
-			operacio = true;
-			valor1 = Integer.parseInt(num);
-			total = String.valueOf(valor1);
-			return total;
-		}
+	private void operacioMat(JButton button) {
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (operacio != "") {
+					switch (operacio) {
+					case "+":
+						valor = valor + num;
+						num = 0;
+						total = total + e.getActionCommand();
+						lblCalculadora.setText(total);
+						operacio = e.getActionCommand();
+						break;
+					case "-":
+						valor = valor - num;
+						num = 0;
+						total = total + e.getActionCommand();
+						lblCalculadora.setText(total);
+						operacio = e.getActionCommand();
+						break;
+					}
+				} else {
+					valor = num;
+					num = 0;
+					total = total + e.getActionCommand();
+					lblCalculadora.setText(total);
+					operacio = e.getActionCommand();
+				}
+			}
+		});
 	}
 }
