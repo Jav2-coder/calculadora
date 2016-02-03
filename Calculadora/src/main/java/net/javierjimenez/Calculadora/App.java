@@ -27,7 +27,7 @@ public class App {
 	private JLabel lblCalculadora = new JLabel("0");
 
 	/**
-	 * Launch the application.
+	 * Launch the applicationn.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
