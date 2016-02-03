@@ -16,11 +16,11 @@ public class App {
 
 	private JFrame frame;
 
-	private double valor, num = 0;
+	private double valor, n = 0;
 
 	private boolean igual = false;
 
-	private String total = "0";
+	private String total, num = "0";
 
 	private String operacio = "";
 
@@ -242,7 +242,8 @@ public class App {
 		buttonPnt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!lblCalculadora.getText().contains(".")) {
+				if (!num.contains(".")) {
+					num = num + ".";
 					total = lblCalculadora.getText() + e.getActionCommand();
 					lblCalculadora.setText(total);
 				}
@@ -282,23 +283,47 @@ public class App {
 			public void actionPerformed(ActionEvent e) {
 				switch (operacio) {
 				case "+":
-					total = String.valueOf(valor + num);
-					operacio = "";
-					num = 0;
-					lblCalculadora.setText(total);
-					igual = true;
+					n = Double.parseDouble(num);
+					if ((valor + n) != (double) 666) {
+						total = String.valueOf(valor + n);
+						operacio = "";
+						num = "";
+						lblCalculadora.setText(total);
+						igual = true;
+					} else {
+						lblCalculadora.setText("ES EL DIMONI!! ERROR )_:");
+						operacio = "";
+						num = "";
+						igual = true;
+					}
 					break;
 				case "-":
-					total = String.valueOf(valor - num);
-					operacio = "";
-					num = 0;
-					lblCalculadora.setText(total);
-					igual = true;
+					n = Double.parseDouble(num);
+					if ((valor - n) != (double) 666) {
+						total = String.valueOf(valor - n);
+						operacio = "";
+						num = "";
+						lblCalculadora.setText(total);
+						igual = true;
+					} else {
+						lblCalculadora.setText("ES EL DIMONI!! ERROR )_:");
+						operacio = "";
+						num = "";
+						igual = true;
+					}
 					break;
 				case "":
-					total = String.valueOf(num);
-					lblCalculadora.setText(total);
-					igual = true;
+					n = Double.parseDouble(num);
+					if ((valor + n) != (double) 666) {
+						total = String.valueOf(n);
+						lblCalculadora.setText(total);
+						igual = true;
+					} else {
+						lblCalculadora.setText("ES EL DIMONI!! ERROR )_:");
+						operacio = "";
+						num = "";
+						igual = true;
+					}
 					break;
 				}
 			}
@@ -326,16 +351,12 @@ public class App {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!igual) {
-					String number = String.valueOf((int) num);
-					number = number + e.getActionCommand();
-					num = Double.parseDouble(number);
+					num = num + e.getActionCommand();
 					total = lblCalculadora.getText() + e.getActionCommand();
 					lblCalculadora.setText(total);
 				} else {
 					lblCalculadora.setText("");
-					String number = String.valueOf((int) num);
-					number = number + e.getActionCommand();
-					num = Double.parseDouble(number);
+					num = e.getActionCommand();
 					total = lblCalculadora.getText() + e.getActionCommand();
 					lblCalculadora.setText(total);
 					igual = false;
@@ -351,23 +372,23 @@ public class App {
 				if (operacio != "") {
 					switch (operacio) {
 					case "+":
-						valor = valor + num;
-						num = 0;
+						valor = valor + Double.parseDouble(num);
+						num = "0";
 						total = total + e.getActionCommand();
 						lblCalculadora.setText(total);
 						operacio = e.getActionCommand();
 						break;
 					case "-":
-						valor = valor - num;
-						num = 0;
+						valor = valor - Double.parseDouble(num);
+						num = "0";
 						total = total + e.getActionCommand();
 						lblCalculadora.setText(total);
 						operacio = e.getActionCommand();
 						break;
 					}
 				} else {
-					valor = num;
-					num = 0;
+					valor = Double.parseDouble(num);
+					num = "0";
 					total = total + e.getActionCommand();
 					lblCalculadora.setText(total);
 					operacio = e.getActionCommand();
