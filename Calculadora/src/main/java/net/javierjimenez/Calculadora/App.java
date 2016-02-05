@@ -25,7 +25,7 @@ public class App {
 	private String operacio = "";
 
 	private JLabel lblCalculadora = new JLabel("0");
-
+	
 	/**
 	 * Launch the applicationn.
 	 */
@@ -306,6 +306,7 @@ public class App {
 						lblCalculadora.setText(total);
 						igual = true;
 					} else {
+						lblCalculadora.setText("");
 						lblCalculadora.setText("ES EL DIMONI!! ERROR )_:");
 						operacio = "";
 						num = "0";
