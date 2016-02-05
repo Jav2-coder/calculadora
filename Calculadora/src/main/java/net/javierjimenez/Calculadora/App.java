@@ -350,16 +350,16 @@ public class App {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!igual) {
-					num = num + e.getActionCommand();
-					total = lblCalculadora.getText() + e.getActionCommand();
-					lblCalculadora.setText(total);
-				} else {
+				if (igual) {
 					lblCalculadora.setText("");
 					num = e.getActionCommand();
 					total = lblCalculadora.getText() + e.getActionCommand();
 					lblCalculadora.setText(total);
 					igual = false;
+				} else {
+					num = num + e.getActionCommand();
+					total = lblCalculadora.getText() + e.getActionCommand();
+					lblCalculadora.setText(total);
 				}
 			}
 		});
@@ -369,6 +369,12 @@ public class App {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (igual) {
+					lblCalculadora.setText("0");
+					total = "0";
+					igual = false;
+				}
+				
 				if (operacio != "") {
 					switch (operacio) {
 					case "+":
