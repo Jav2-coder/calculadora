@@ -20,7 +20,7 @@ public class App {
 
 	private boolean igual = false;
 
-	private String total, num = "0";
+	private String total = "0", num = "0";
 
 	private String operacio = "";
 
@@ -287,13 +287,13 @@ public class App {
 					if ((valor + n) != (double) 666) {
 						total = String.valueOf(valor + n);
 						operacio = "";
-						num = "";
+						num = "0";
 						lblCalculadora.setText(total);
 						igual = true;
 					} else {
 						lblCalculadora.setText("ES EL DIMONI!! ERROR )_:");
 						operacio = "";
-						num = "";
+						num = "0";
 						igual = true;
 					}
 					break;
@@ -302,13 +302,13 @@ public class App {
 					if ((valor - n) != (double) 666) {
 						total = String.valueOf(valor - n);
 						operacio = "";
-						num = "";
+						num = "0";
 						lblCalculadora.setText(total);
 						igual = true;
 					} else {
 						lblCalculadora.setText("ES EL DIMONI!! ERROR )_:");
 						operacio = "";
-						num = "";
+						num = "0";
 						igual = true;
 					}
 					break;
@@ -321,7 +321,7 @@ public class App {
 					} else {
 						lblCalculadora.setText("ES EL DIMONI!! ERROR )_:");
 						operacio = "";
-						num = "";
+						num = "0";
 						igual = true;
 					}
 					break;
