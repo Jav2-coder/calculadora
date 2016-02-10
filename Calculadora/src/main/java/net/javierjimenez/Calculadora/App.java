@@ -14,20 +14,39 @@ import java.awt.Color;
 
 public class App {
 
+	/**
+	 * Objecte principal del programa que controla la finestra emergent.
+	 */
 	private JFrame frame;
 
+	/**
+	 * Variables Double on emmagatzemarem el valor total i el sumand.
+	 */
 	private double valor, n = 0;
 
+	/**
+	 * Variable boolean que comproba si s'ha fet un igual o no. 
+	 */
 	private boolean igual = false;
 
+	/**
+	 * Variables String. Un mostra la operació per pantalla (total) i
+	 * l'altre captura l'ultim numero que introduim a l'operacio.
+	 */
 	private String total = "0", num = "0";
 
+	/**
+	 * Variable String que emmagatzema els simbols matematics de l'operacio. 
+	 */
 	private String operacio = "";
 
+	/**
+	 * Objecte Jlabel que s'encarrega de mostrar per pantalla l'operacio i el resultat.
+	 */
 	private JLabel lblCalculadora = new JLabel("0");
 	
 	/**
-	 * Launch the applicationn.
+	 * Constructor principal que executa l'aplicacio.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -43,14 +62,15 @@ public class App {
 	}
 
 	/**
-	 * Create the application.
+	 * Constructor que crea l'aplicacio.
 	 */
 	public App() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Metode que inicialitza el contingut del frame creat,
+	 * en aquest cas botons.
 	 */
 	private void initialize() {
 
@@ -239,6 +259,9 @@ public class App {
 		g.gridy = 4;
 		frame.getContentPane().add(buttonPnt, g);
 
+		/**
+		 * Listener del boto "." encarregat de crear decimals.
+		 */
 		buttonPnt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -278,6 +301,9 @@ public class App {
 		g.gridy = 4;
 		frame.getContentPane().add(buttonEq, g);
 
+		/**
+		 * Listener del boto "=", encarregat de realitzar i finalitzar l'operacio.
+		 */
 		buttonEq.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -346,6 +372,12 @@ public class App {
 		operacioMat(buttonPls);
 	}
 
+	/**
+	 * Metode que detecta quin boto de la calculadora s'ha
+	 * pitjat i guarda el valor.
+	 * 
+	 * @param button Objecte Jbutton que activara el ActionListener.
+	 */
 	private void actionButtonNum(JButton button) {
 
 		button.addActionListener(new ActionListener() {
@@ -366,6 +398,13 @@ public class App {
 		});
 	}
 
+	/**
+	 * Metode que s'activa quan el pitja el boto "=",
+	 * el qual desencadena un ActionListener que fara
+	 * l'operacio.
+	 * 
+	 * @param button Objecte Jbutton que activara el ActionListener.
+	 */
 	private void operacioMat(JButton button) {
 		button.addActionListener(new ActionListener() {
 			@Override
